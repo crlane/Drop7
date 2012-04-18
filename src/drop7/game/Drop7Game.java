@@ -16,38 +16,57 @@ import info.gridworld.world.World;
 
 public class Drop7Game implements Drop7Constants {
 	/** The world - probably want to subclass this */
-	private Drop7World<?> world;
+	private Drop7World world;
 	private Drop7Grid<Disk> grid;
 	private Random generator;
 	private int emptyLocations;
+	private int moveCounter;
+	private int cascadeCounter;
+	private static int score;
 
 	public Drop7Game() {
 		generator = new Random();
 		grid = new Drop7Grid<Disk>(NUM_ROWS, NUM_COLS);
 		world = new Drop7World(grid);
-		world.show();
-
+		world.show();	
+		score = 0;
 	}
 
 	/**
 	 * Plays the game until it is over (no player can play).
 	 */
 	public void playGame() {
-		setUpGrid();
-		System.out.println(this.toString());
-		while (emptyLocations != 0) {
+		ArrayList<Disk> toRemove = null;
+		while (grid.getNumberOfEmptyLocations() > 0 && grid.isBufferRowEmpty()) {
+			toRemove = checkForDisksToRemove();
+			if (toRemove != null){
+				removeDisks(toRemove);
+			}
 			// nextMove();
 			// calculateScore();
+			displayMessage();
 		}
-		// displayMessage();
+		System.out.println("exit");
 	}
 
-	private void setUpGrid() {
-		for (int i = 0; i < 1; i++) {
-			Disk d = new NumberDisk();
-			d.putSelfInGrid(grid, new Location(6, 0));
+	private void displayMessage() {
+		
+		System.out.println(score);
+		
+	}
+
+	private void removeDisks(ArrayList<Disk> toRemove) {
+		for (Disk d: toRemove){
+			d.removeSelfFromGrid();
+			cascadeCounter++;
 		}
 		
+		score += 50*Math.pow(cascadeCounter,CASCADE_MULTIPLIER) + 150;
+	}
+
+	private ArrayList<Disk> checkForDisksToRemove() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**
