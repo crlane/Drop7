@@ -2,10 +2,15 @@ package drop7.disks;
 
 import java.awt.Color;
 
-public class GrayDisk extends Disk {
+import drop7.Drop7Constants;
 
+public class GrayDisk extends Disk implements Drop7Constants{
+
+	private int hitsToRemove;
+	
 	public GrayDisk() {
-		// TODO Auto-generated constructor stub
+		super(Color.GRAY);
+		hitsToRemove = HITS_TO_UNLOCK;
 	}
 
 	public GrayDisk(Color rockColor) {

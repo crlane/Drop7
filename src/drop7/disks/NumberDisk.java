@@ -2,15 +2,30 @@ package drop7.disks;
 
 import java.awt.Color;
 
-public class NumberDisk extends Disk {
+import drop7.Drop7Constants;
+
+public class NumberDisk extends Disk implements Drop7Constants{
+
+	private int numberToRemove;
 
 	public NumberDisk() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
+	public NumberDisk(int num){
+		super();
+		setNumberToRemove(num);
+	}
 	public NumberDisk(Color rockColor) {
 		super(rockColor);
-		// TODO Auto-generated constructor stub
+	}
+
+	public int getNumberToRemove() {
+		return numberToRemove;
+	}
+
+	private void setNumberToRemove(int numberToRemove) {
+		this.numberToRemove = numberToRemove;
 	}
 
 }
