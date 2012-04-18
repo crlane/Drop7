@@ -16,7 +16,7 @@ import info.gridworld.world.World;
 
 public class Drop7Game implements Drop7Constants {
 	/** The world - probably want to subclass this */
-	private Drop7World world;
+	private Drop7World<?> world;
 	private Drop7Grid<Disk> grid;
 	private Random generator;
 	private int emptyLocations;
@@ -25,8 +25,6 @@ public class Drop7Game implements Drop7Constants {
 		generator = new Random();
 		grid = new Drop7Grid<Disk>(NUM_ROWS, NUM_COLS);
 		world = new Drop7World(grid);
-		emptyLocations = grid.getOccupiedLocations().size()
-				- NUM_STARTING_DISKS;
 		world.show();
 
 	}
