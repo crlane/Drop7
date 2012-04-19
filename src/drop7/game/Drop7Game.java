@@ -4,15 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import drop7.Drop7Constants;
-import drop7.disks.Disk;
-import drop7.disks.GrayDisk;
-import drop7.disks.NumberDisk;
+import drop7.actor.Disk;
 import drop7.grid.Drop7Grid;
 import drop7.world.Drop7World;
-import info.gridworld.actor.Actor;
-import info.gridworld.grid.Grid;
-import info.gridworld.grid.Location;
-import info.gridworld.world.World;
 
 public class Drop7Game implements Drop7Constants {
 	/** The world - probably want to subclass this */
