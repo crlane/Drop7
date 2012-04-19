@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import drop7.Drop7Constants;
-import drop7.disks.GrayDisk;
-import drop7.disks.NumberDisk;
-import info.gridworld.actor.Actor;
-import info.gridworld.grid.BoundedGrid;
-import info.gridworld.grid.Grid;
-import info.gridworld.grid.Location;
+import drop7.actor.Actor;
+import drop7.actor.GrayDisk;
+import drop7.actor.NumberDisk;
 
 public class Drop7Grid<Disk> extends BoundedGrid<Actor> implements
 		Drop7Constants {
