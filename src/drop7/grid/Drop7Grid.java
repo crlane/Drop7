@@ -1,6 +1,7 @@
 package drop7.grid;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import drop7.Drop7Constants;
 import drop7.disks.GrayDisk;
@@ -10,21 +11,40 @@ import info.gridworld.grid.BoundedGrid;
 import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
 
-public class Drop7Grid<Disk> extends BoundedGrid<Actor> implements Drop7Constants{
+public class Drop7Grid<Disk> extends BoundedGrid<Actor> implements
+		Drop7Constants {
+
+	private static Random generator;
 
 	public Drop7Grid(int rows, int cols) {
-		super(rows,cols);
+		super(rows, cols);
+		generator = new Random();
 		this.setUpGrid();
 	}
 
 	private void setUpGrid() {
-		
+		for (int i = 0; i < NUM_STARTING_DISKS; i++) {
+			if (generator.nextBoolean()) {
+				GrayDisk gd = new GrayDisk();
+				gd.putSelfInGrid(this,
+						new Location(3, generator.nextInt(NUM_COLS)));
+				gd.moveToBottom();
+			}
+
+			else {
+				NumberDisk nd = new NumberDisk(generator.nextInt(7));
+				nd.putSelfInGrid(this,
+						new Location(3, generator.nextInt(NUM_COLS)));
+				nd.moveToBottom();
+			}
+		}
 	}
 
-	public String toString(){
+	public String toString() {
 		ArrayList<Location> locs = this.getOccupiedLocations();
-		
-		return this.getClass().toString() + " - " + locs.size() + " Actors in Grid";
+
+		return this.getClass().toString() + " - " + locs.size()
+				+ " Actors in Grid";
 	}
 
 	public int getNumberOfEmptyLocations() {
@@ -33,7 +53,7 @@ public class Drop7Grid<Disk> extends BoundedGrid<Actor> implements Drop7Constant
 
 	public boolean isBufferRowEmpty() {
 		System.out.println("got here");
-		for (Location loc : this.getOccupiedLocations()){
+		for (Location loc : this.getOccupiedLocations()) {
 			if (loc.getRow() == 1)
 				return false;
 		}
